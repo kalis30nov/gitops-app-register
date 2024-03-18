@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-register-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-register
+  template:
+    metadata:
+      labels:
+        app: app-register
+    spec:
+      containers:
+        - name: app-register
+          image: kalis30nov/app-register-pipeline:1.0.0-15
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
